@@ -5,49 +5,61 @@ import java.util.Scanner;
 public class Java_Anagrams_UsingArray
 {
 
-public static String getSmallestAndLargest(String s, int k) {
-		// TODO Auto-generated method stub
-		 String s1;
-		  	int a=s.length() ;
-		  	int i=0;
-		  	 String[] s2=new String[a];
-		  	for( i=0;i<=s.length()-k;i++)
-		   {
-		   	
-		    s1=s.substring(i,i+k);
-		     s2[i]=s1;
-		    System.out.print(s2[i]+" ");
-		   }System.out.println();
-		  	
-		       String smallest =s2[0];
-		       String largest =s2[0];
+static boolean isAnagram(String a, String b)
+	     {
+	        // Complete the function
+		int x=a.length();
+		int y=b.length();
+		 if(x==y)
+	        {
+	       int uni1[]=new int[a.length()];
+	       int uni2[]=new int[b.length()];
+		        
 		       
-		       for( i=0;i<=s2.length-k;i++)
-		       {
-		       	String a1=s2[i];
-		       	String b=s2[i];
-		       if((s2[i].compareTo(smallest))<0)
-		       {
-		       	smallest=a1;
-		       }
-		       if((s2[i].compareTo(largest))>0)
-		       {
-		       	largest=b;
-		       }
-		       
-		       } 
-		      return smallest + "\n" + largest;
-
+	           String[] s1=new String[x];
+	            
+	            String[] s2=new String[x];
+	            String ls1=a.toLowerCase();
+	            String ls2=b.toLowerCase();
+	            
+	        for(int i=0;i<x;++i)
+	        {
+	        	s1[i]=ls1.substring(i,i+1);
+	        }
+	        for(int i=0;i<y;++i)
+	        {
+	        	s2[i]=ls2.substring(i,i+1);
+	        }
+	       
+	        for(int i=0;i<x;++i)
+	        {
+	        	
+	        	uni1[i]=ls1.codePointAt(i);
+	        	System.out.println( uni1[i]);
+	            uni2[i]=ls2.codePointAt(i);
+	        	System.out.println( uni2[i]);
+	        }
+	        
+	       Arrays.sort(uni1);
+	        Arrays.sort(uni2);
+	        
+	       if(Arrays.equals(uni1, uni2))
+	        		return true;
+	        	else		
+	        		return false;
+	    }
+	else 
+		return false;
+	     }
+	    public static void main(String[] args)
+	    {
+	    
+	        Scanner scan = new Scanner(System.in);
+	        String a = scan.next();
+	        String b = scan.next();
+	        scan.close();
+	        boolean ret = isAnagram(a, b);
+	        System.out.println( (ret) ? "Anagrams" : "Not Anagrams" );
+	    }
 	}
-   public static void main(String[] args) {
-       Scanner scan = new Scanner(System.in);
-       String s = scan.next();
-       int k = scan.nextInt();
-       scan.close();
-     
-       System.out.println(getSmallestAndLargest(s, k));
-
-
-	}
-
-}
+	
